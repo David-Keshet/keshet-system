@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import CustomerSearchModal from '../components/orders/CustomerSearchModal';
 import './Orders.css';
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
@@ -13,7 +14,9 @@ const Orders = () => {
   const [error, setError] = useState('');
   const [showNewOrderModal, setShowNewOrderModal] = useState(false);
   const [showSaveOptionsModal, setShowSaveOptionsModal] = useState(false);
+  const [showCustomerSearchModal, setShowCustomerSearchModal] = useState(false);
   const [currentOrderData, setCurrentOrderData] = useState(null);
+  const [matchingCustomers, setMatchingCustomers] = useState([]);
 
   // Customer form data
   const [isNewCustomer, setIsNewCustomer] = useState(true);
@@ -182,6 +185,89 @@ const Orders = () => {
         id_number: customer.id_number || ''
       });
     }
+  };
+
+  // Search customers by phone/name/code
+  const searchCustomers = async (searchTerm) => {
+    if (!searchTerm || searchTerm.length < 2) {
+      setMatchingCustomers([]);
+      setShowCustomerSearchModal(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('customers')
+        .select('*')
+        .or(`phone.ilike.%${searchTerm}%,name.ilike.%${searchTerm}%,customer_code.ilike.%${searchTerm}%`)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      if (data && data.length > 0) {
+        setMatchingCustomers(data);
+        setShowCustomerSearchModal(true);
+      } else {
+        setMatchingCustomers([]);
+        setShowCustomerSearchModal(false);
+      }
+    } catch (err) {
+      console.error('Error searching customers:', err);
+    }
+  };
+
+  // Handler for selecting customer from search modal
+  const handleSelectCustomerFromSearch = (customer) => {
+    setIsNewCustomer(false);
+    setSelectedCustomerId(customer.id);
+    setCustomerType(customer.customer_type || 'private');
+    setCustomerData({
+      name: customer.name || '',
+      phone: customer.phone || '',
+      email: customer.email || '',
+      contact_person: customer.contact_person || '',
+      payer_name: customer.payer_name || '',
+      id_number: customer.id_number || ''
+    });
+    setShowCustomerSearchModal(false);
+  };
+
+  // Handler for viewing customer orders
+  const handleViewCustomerOrders = (customer) => {
+    setShowCustomerSearchModal(false);
+    // Filter orders by customer - could navigate or filter current view
+    const customerOrders = orders.filter(o => o.customer_id === customer.id);
+    console.log('Customer orders:', customerOrders);
+    alert(`נמצאו ${customerOrders.length} הזמנות עבור ${customer.name}`);
+  };
+
+  // Handler for editing customer from search
+  const handleEditCustomerFromSearch = (customer) => {
+    setIsNewCustomer(false);
+    setSelectedCustomerId(customer.id);
+    setCustomerType(customer.customer_type || 'private');
+    setCustomerData({
+      name: customer.name || '',
+      phone: customer.phone || '',
+      email: customer.email || '',
+      contact_person: customer.contact_person || '',
+      payer_name: customer.payer_name || '',
+      id_number: customer.id_number || ''
+    });
+    setShowCustomerSearchModal(false);
+    // Could open customer edit in a separate modal or navigate to customers page
+  };
+
+  // Handler for creating new customer with entered details
+  const handleCreateNewFromSearch = () => {
+    setIsNewCustomer(true);
+    setSelectedCustomerId('');
+    // Keep the search term in name or phone field
+    if (matchingCustomers.length > 0) {
+      const searchTerm = customerData.phone || customerData.name;
+      // Pre-fill with what user was searching for
+    }
+    setShowCustomerSearchModal(false);
   };
 
   const resetOrderForm = () => {
@@ -616,7 +702,12 @@ const Orders = () => {
                         <input
                           type="text"
                           value={customerData.name}
-                          onChange={(e) => handleCustomerDataChange('name', e.target.value)}
+                          onChange={(e) => {
+                            handleCustomerDataChange('name', e.target.value);
+                            if (isNewCustomer) {
+                              searchCustomers(e.target.value);
+                            }
+                          }}
                           required
                           disabled={!isNewCustomer}
                         />
@@ -626,7 +717,12 @@ const Orders = () => {
                         <input
                           type="tel"
                           value={customerData.phone}
-                          onChange={(e) => handleCustomerDataChange('phone', e.target.value)}
+                          onChange={(e) => {
+                            handleCustomerDataChange('phone', e.target.value);
+                            if (isNewCustomer) {
+                              searchCustomers(e.target.value);
+                            }
+                          }}
                           required
                           disabled={!isNewCustomer}
                         />
@@ -859,6 +955,18 @@ const Orders = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Customer Search Modal */}
+      {showCustomerSearchModal && (
+        <CustomerSearchModal
+          onClose={() => setShowCustomerSearchModal(false)}
+          onCreateNew={handleCreateNewFromSearch}
+          onSelectCustomer={handleSelectCustomerFromSearch}
+          onViewOrders={handleViewCustomerOrders}
+          onEditCustomer={handleEditCustomerFromSearch}
+          matchingCustomers={matchingCustomers}
+        />
       )}
     </div>
   );
