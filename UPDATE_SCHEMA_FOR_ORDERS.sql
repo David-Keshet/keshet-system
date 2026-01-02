@@ -117,7 +117,16 @@ $$ LANGUAGE plpgsql;
 -- 9. Add RLS for new table
 -- ============================================
 ALTER TABLE whatsapp_templates ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow all for service role" ON whatsapp_templates FOR ALL USING (true);
+
+-- Drop existing policy if it exists, then create it
+DO $$
+BEGIN
+    DROP POLICY IF EXISTS "Allow all for service role" ON whatsapp_templates;
+    CREATE POLICY "Allow all for service role" ON whatsapp_templates FOR ALL USING (true);
+EXCEPTION
+    WHEN duplicate_object THEN
+        NULL; -- Policy already exists, ignore error
+END $$;
 
 -- ============================================
 -- 10. Add trigger for whatsapp_templates updated_at
