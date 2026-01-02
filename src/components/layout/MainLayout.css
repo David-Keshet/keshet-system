@@ -1,0 +1,70 @@
+.main-layout {
+  min-height: 100vh;
+  background: var(--background);
+  transition: background 0.3s ease;
+}
+
+.main-content {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 60px;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px;
+  transition: right 0.3s ease;
+}
+
+/* כשהסיידבר מורחב */
+.sidebar.expanded ~ .main-layout .main-content {
+  right: 200px;
+}
+
+/* סרגל גלילה מותאם */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Dark Theme Enhancements */
+[data-theme="dark"] .main-content::-webkit-scrollbar-track {
+  background: #0f0a1e;
+}
+
+[data-theme="dark"] .main-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7C3AED 0%, #6366F1 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+}
+
+[data-theme="dark"] .main-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8B5CF6 0%, #818CF8 100%);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+}
+
+/* רספונסיביות */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    right: 50px;
+    padding: 12px;
+  }
+}

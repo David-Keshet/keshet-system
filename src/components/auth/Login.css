@@ -1,0 +1,1104 @@
+/* ===============================================
+   משתנים גלובליים - עיצוב מודרני ומקצועי
+   =============================================== */
+:root {
+  --primary-color: #6a11cb;
+  --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  --secondary-color: #2575fc;
+  --success-color: #00c853;
+  --warning-color: #ffab00;
+  --danger-color: #ff3d71;
+  --info-color: #0095ff;
+
+  --background-dark: #0a0e27;
+  --surface-dark: #1a1e35;
+  --card-dark: #1e2238;
+  --card-darker: #13162b;
+  --border-dark: #2d3348;
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-hint: rgba(255, 255, 255, 0.5);
+
+  --accent-blue: #3182ce;
+  --accent-green: #38a169;
+  --gradient-bg: linear-gradient(135deg, #0a0e27 0%, #1a1e35 50%, #0f1229 100%);
+
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.6);
+
+  --glow-blue: 0 0 20px rgba(49, 130, 206, 0.4);
+  --glow-green: 0 0 20px rgba(56, 161, 105, 0.4);
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ===============================================
+   עיצוב עמוד הלוגאין - רקע ואנימציות
+   =============================================== */
+.login-page {
+  min-height: 100vh;
+  background: var(--gradient-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at top, rgba(106, 17, 203, 0.15), transparent),
+              radial-gradient(ellipse at bottom, rgba(37, 117, 252, 0.15), transparent);
+}
+
+.login-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: floatParticle 10s infinite linear;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ===============================================
+   קונטיינר ראשי וכרטיס הלוגאין
+   =============================================== */
+.login-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1400px;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  align-items: stretch;
+}
+
+.login-card {
+  background: rgba(30, 34, 56, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  min-width: 400px;
+  box-shadow: var(--shadow-xl);
+  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--transition-normal);
+}
+
+.glass-effect {
+  background: rgba(30, 34, 56, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===============================================
+   כותרת וסמל הלוגאין
+   =============================================== */
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-logo {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--accent-blue), #9f7aea);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  box-shadow: var(--glow-blue);
+  animation: pulseLogo 3s infinite ease-in-out;
+  transition: transform var(--transition-normal);
+}
+
+.login-logo:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+@keyframes pulseLogo {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(49, 130, 206, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(49, 130, 206, 0);
+  }
+}
+
+.login-header h1 {
+  color: var(--text-primary);
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(20deg);
+  }
+}
+
+.login-header p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.login-version {
+  color: var(--accent-green);
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(56, 161, 105, 0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 10px;
+  border: 1px solid rgba(56, 161, 105, 0.3);
+}
+
+/* ===============================================
+   טופס ושדות קלט
+   =============================================== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group label i {
+  color: var(--accent-blue);
+  font-size: 16px;
+}
+
+.login-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-md);
+  padding: 14px 18px;
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all var(--transition-normal);
+  font-family: 'Rubik', 'Heebo', sans-serif;
+  width: 100%;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.login-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.login-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===============================================
+   הודעות שגיאה
+   =============================================== */
+.error-message {
+  background: rgba(229, 62, 62, 0.2);
+  color: #ff6b6b;
+  padding: 14px 18px;
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  border: 1px solid rgba(229, 62, 62, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: shake 0.5s ease, fadeIn 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message i {
+  font-size: 18px;
+}
+
+/* ===============================================
+   אפשרויות טופס - checkbox ושכחתי סיסמה
+   =============================================== */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 30px;
+  transition: color var(--transition-fast);
+}
+
+.checkbox-label:hover {
+  color: var(--text-primary);
+}
+
+.checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  transition: all var(--transition-normal);
+}
+
+.checkbox-label:hover input ~ .checkmark {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent-blue);
+}
+
+.checkbox-label input:checked ~ .checkmark {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+  right: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.forgot-password {
+  color: var(--accent-blue);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.forgot-password:hover {
+  color: #4299e1;
+  text-decoration: underline;
+}
+
+.forgot-password:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-blue);
+  transition: width var(--transition-normal);
+}
+
+.forgot-password:hover:after {
+  width: 100%;
+}
+
+/* ===============================================
+   כפתורי התחברות
+   =============================================== */
+.login-btn {
+  background: linear-gradient(135deg, var(--accent-blue), #9f7aea);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Rubik', 'Heebo', sans-serif;
+  box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+}
+
+.login-btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.login-btn:hover:before {
+  left: 100%;
+}
+
+.login-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(49, 130, 206, 0.5);
+}
+
+.login-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-btn .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===============================================
+   מפריד (divider)
+   =============================================== */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: var(--text-hint);
+  gap: 15px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.divider::after {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.divider span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===============================================
+   התחברות מהירה
+   =============================================== */
+.quick-login {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-quick-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius-md);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-family: 'Rubik', 'Heebo', sans-serif;
+}
+
+.btn-quick-login:hover:not(:disabled) {
+  background: rgba(37, 117, 252, 0.15);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+}
+
+.btn-quick-login:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-quick-login i {
+  font-size: 20px;
+  color: var(--secondary-color);
+}
+
+/* ===============================================
+   כפתורי דמו
+   =============================================== */
+.demo-logins {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.demo-title {
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.demo-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--border-radius-md);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Rubik', 'Heebo', sans-serif;
+}
+
+.demo-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.demo-btn.admin:hover:not(:disabled) {
+  border-color: var(--accent-blue);
+  background: rgba(49, 130, 206, 0.15);
+  box-shadow: 0 6px 18px rgba(49, 130, 206, 0.4);
+}
+
+.demo-btn.user:hover:not(:disabled) {
+  border-color: var(--accent-green);
+  background: rgba(56, 161, 105, 0.15);
+  box-shadow: 0 6px 18px rgba(56, 161, 105, 0.4);
+}
+
+.demo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.demo-btn i {
+  font-size: 16px;
+}
+
+/* ===============================================
+   תחתית כרטיס הלוגאין
+   =============================================== */
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.system-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.info-item i {
+  color: var(--accent-green);
+  font-size: 14px;
+}
+
+.info-item strong {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.copyright {
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin: 15px 0;
+}
+
+.tech-stack {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tech-stack span {
+  font-size: 11px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.tech-stack span:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+/* ===============================================
+   פאנל צד - מידע ויתרונות
+   =============================================== */
+.login-side-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 750px;
+}
+
+.side-info-card {
+  background: rgba(30, 34, 56, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: 28px;
+  animation: slideInLeft 0.8s ease-out;
+  animation-fill-mode: both;
+  transition: all var(--transition-normal);
+}
+
+.side-info-card:hover {
+  background: rgba(30, 34, 56, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-5px);
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.side-info-card:nth-child(1) { animation-delay: 0.1s; }
+.side-info-card:nth-child(2) { animation-delay: 0.2s; }
+.side-info-card:nth-child(3) { animation-delay: 0.3s; }
+.side-info-card:nth-child(4) { animation-delay: 0.4s; }
+.side-info-card:nth-child(5) { animation-delay: 0.5s; }
+
+.side-info-card h3 {
+  color: var(--text-primary);
+  font-size: 19px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.side-info-card h3 i {
+  color: var(--accent-blue);
+  font-size: 20px;
+}
+
+.side-info-card p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.side-info-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-info-card li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all var(--transition-normal);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.side-info-card li:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(-5px);
+}
+
+.side-info-card li i {
+  color: var(--accent-green);
+  font-size: 14px;
+  min-width: 18px;
+}
+
+/* סליידר בפאנל הצד */
+.side-info-card.slide {
+  display: none;
+}
+
+.side-info-card.slide.active {
+  display: block;
+}
+
+.slide-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.slide-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  padding: 0;
+}
+
+.slide-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.slide-btn.active {
+  background: var(--accent-blue);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px var(--accent-blue);
+}
+
+/* סטטיסטיקות */
+.side-info-card.stats .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-normal);
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-blue);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(49, 130, 206, 0.3);
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent-blue), #9f7aea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ===============================================
+   Toast הודעות
+   =============================================== */
+.toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: rgba(30, 34, 56, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--info-color);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  width: 380px;
+  max-width: calc(100vw - 60px);
+  transform: translateX(500px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 9999;
+  direction: rtl;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  border-color: var(--success-color);
+}
+
+.toast.error {
+  border-color: var(--danger-color);
+}
+
+.toast.warning {
+  border-color: var(--warning-color);
+}
+
+.toast.info {
+  border-color: var(--info-color);
+}
+
+.toast-icon {
+  margin-left: 15px;
+  font-size: 22px;
+  color: var(--info-color);
+}
+
+.toast.success .toast-icon {
+  color: var(--success-color);
+}
+
+.toast.error .toast-icon {
+  color: var(--danger-color);
+}
+
+.toast.warning .toast-icon {
+  color: var(--warning-color);
+}
+
+.toast-message {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toast-close {
+  background: transparent;
+  color: var(--text-hint);
+  font-size: 16px;
+  padding: 5px;
+  margin-right: 10px;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.toast-close:hover {
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+/* ===============================================
+   עיצוב ריספונסיבי
+   =============================================== */
+@media (max-width: 1200px) {
+  .login-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-card {
+    max-width: 500px;
+    min-width: 350px;
+  }
+
+  .login-side-info {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .side-info-card.stats .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    padding: 15px;
+  }
+
+  .login-card {
+    padding: 30px 25px;
+    min-width: 0;
+  }
+
+  .login-container {
+    gap: 25px;
+  }
+
+  .login-side-info {
+    gap: 20px;
+  }
+
+  .side-info-card {
+    padding: 20px;
+  }
+
+  .side-info-card.stats .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .demo-buttons {
+    flex-direction: column;
+  }
+
+  .toast {
+    right: 15px;
+    top: 15px;
+    width: calc(100vw - 30px);
+  }
+
+  .login-logo {
+    width: 75px;
+    height: 75px;
+    font-size: 35px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 10px;
+  }
+
+  .login-card {
+    padding: 25px 20px;
+  }
+
+  .login-logo {
+    width: 65px;
+    height: 65px;
+    font-size: 30px;
+  }
+
+  .login-header h1 {
+    font-size: 22px;
+  }
+
+  .login-header p {
+    font-size: 14px;
+  }
+
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .login-input {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .login-btn {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .side-info-card h3 {
+    font-size: 17px;
+  }
+
+  .stat-value {
+    font-size: 22px;
+  }
+}
+
+/* ===============================================
+   אנימציות נוספות ואפקטים
+   =============================================== */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* אפקט Tilt על כרטיס הלוגאין */
+.tilt-on-hover {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* הבהוב עדין לאלמנטים אינטראקטיביים */
+@keyframes subtleGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(49, 130, 206, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(49, 130, 206, 0.6);
+  }
+}

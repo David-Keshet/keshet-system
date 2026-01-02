@@ -1,0 +1,207 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-right,
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* לוגו וכותרת */
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.topbar-logo i {
+  font-size: 28px;
+}
+
+.topbar-title {
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+/* אינדיקטור חיבור */
+.topbar-connection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--background);
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: help;
+}
+
+.connection-dot {
+  font-size: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.connection-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* שעון ותאריך */
+.topbar-datetime {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: var(--background);
+  border-radius: 8px;
+}
+
+.topbar-time,
+.topbar-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.topbar-time i,
+.topbar-date i {
+  color: var(--primary);
+  font-size: 16px;
+}
+
+/* משתמש */
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--background);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.topbar-user i {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+/* כפתורים */
+.topbar-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--background);
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 18px;
+}
+
+.topbar-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.topbar-btn:active {
+  transform: translateY(0);
+}
+
+/* Dark Theme Enhancements */
+[data-theme="dark"] .topbar {
+  background: linear-gradient(90deg, #1f1640 0%, #2a1f54 100%);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="dark"] .topbar-datetime,
+[data-theme="dark"] .topbar-connection,
+[data-theme="dark"] .topbar-user {
+  background: rgba(31, 22, 64, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .topbar-btn {
+  background: rgba(31, 22, 64, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+[data-theme="dark"] .topbar-btn:hover {
+  background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+[data-theme="dark"] .topbar-logo,
+[data-theme="dark"] .topbar-time i,
+[data-theme="dark"] .topbar-date i,
+[data-theme="dark"] .topbar-user i {
+  color: #A78BFA;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+/* עיצוב responsive */
+@media (max-width: 1024px) {
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .topbar-right,
+  .topbar-left {
+    gap: 16px;
+  }
+
+  .connection-label {
+    display: none;
+  }
+
+  .topbar-date {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar-title {
+    display: none;
+  }
+
+  .topbar-datetime {
+    gap: 8px;
+  }
+}

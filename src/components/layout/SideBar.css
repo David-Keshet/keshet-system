@@ -1,0 +1,230 @@
+.sidebar {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  z-index: 900;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar.expanded {
+  width: 200px;
+}
+
+/* כפתור קיפול/פתיחה */
+.sidebar-toggle {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.toggle-btn {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background: var(--background);
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.toggle-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* תפריט ניווט */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+}
+
+/* הסרת סרגל גלילה אבל שמירת פונקציונליות */
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* פריט בתפריט */
+.sidebar-item {
+  width: 100%;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  margin-bottom: 4px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  text-align: right;
+  white-space: nowrap;
+  position: relative;
+}
+
+.sidebar-item i {
+  font-size: 18px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.sidebar-label {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  font-weight: 500;
+}
+
+.sidebar.collapsed .sidebar-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-item:hover {
+  background: var(--background);
+  color: var(--primary);
+}
+
+.sidebar-item.active {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: white;
+  border-radius: 2px 0 0 2px;
+}
+
+/* תחתית הסיידבר */
+.sidebar-footer {
+  padding: 16px 8px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-footer .sidebar-item {
+  cursor: default;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.sidebar-footer .sidebar-item:hover {
+  background: transparent;
+  color: var(--text);
+}
+
+/* אנימציות */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sidebar {
+  animation: slideInRight 0.3s ease;
+}
+
+/* Dark Theme Enhancements */
+[data-theme="dark"] .sidebar {
+  background: linear-gradient(180deg, #1f1640 0%, #2a1f54 100%);
+  border-left: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: -4px 0 20px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="dark"] .toggle-btn {
+  background: rgba(31, 22, 64, 0.8);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+[data-theme="dark"] .toggle-btn:hover {
+  background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+[data-theme="dark"] .sidebar-item {
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .sidebar-item:hover {
+  background: rgba(124, 58, 237, 0.2);
+  color: #A78BFA;
+  box-shadow: 0 2px 10px rgba(124, 58, 237, 0.2);
+}
+
+[data-theme="dark"] .sidebar-item.active {
+  background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+[data-theme="dark"] .sidebar-item.active::before {
+  background: linear-gradient(180deg, #A78BFA 0%, #818CF8 100%);
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
+}
+
+[data-theme="dark"] .sidebar-toggle,
+[data-theme="dark"] .sidebar-footer {
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .sidebar.collapsed {
+    width: 50px;
+  }
+
+  .sidebar.expanded {
+    width: 180px;
+  }
+
+  .sidebar-item {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .sidebar-item i {
+    font-size: 16px;
+  }
+}
