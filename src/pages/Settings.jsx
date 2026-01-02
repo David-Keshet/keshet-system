@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import WhatsAppTemplates from '../components/settings/WhatsAppTemplates';
 import './Settings.css';
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
@@ -397,6 +398,9 @@ const Settings = () => {
           </div>
         </div>
       )}
+
+      {/* WhatsApp Templates Section */}
+      <WhatsAppTemplates />
     </div>
   );
 };

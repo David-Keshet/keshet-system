@@ -5,6 +5,9 @@ import Login from './components/auth/Login';
 import MainLayout from './components/layout/MainLayout';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
+import Customers from './pages/Customers';
+import Orders from './pages/Orders';
+import Tasks from './pages/Tasks';
 import './App.css';
 
 function App() {
@@ -75,7 +78,7 @@ function App() {
               element={
                 isAuthenticated ?
                   <MainLayout currentUser={user?.user}>
-                    <div>לקוחות - בקרוב</div>
+                    <Customers />
                   </MainLayout> :
                   <Navigate to="/login" replace />
               }
@@ -95,7 +98,7 @@ function App() {
               element={
                 isAuthenticated ?
                   <MainLayout currentUser={user?.user}>
-                    <div>הזמנות - בקרוב</div>
+                    <Orders />
                   </MainLayout> :
                   <Navigate to="/login" replace />
               }
@@ -125,7 +128,7 @@ function App() {
               element={
                 isAuthenticated ?
                   <MainLayout currentUser={user?.user}>
-                    <div>משימות - בקרוב</div>
+                    <Tasks />
                   </MainLayout> :
                   <Navigate to="/login" replace />
               }
