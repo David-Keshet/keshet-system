@@ -222,10 +222,15 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-large {
-  max-width: 1000px;
+  max-width: 95vw;
+  width: 95vw;
+  height: 90vh;
+  overflow: hidden;
 }
 
 [data-theme="dark"] .modal-content {
@@ -274,6 +279,9 @@
 
 .modal-body {
   padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .modal-description {
@@ -291,6 +299,7 @@
   gap: 10px;
   padding: 20px;
   border-top: 1px solid #eee;
+  flex-shrink: 0;
 }
 
 [data-theme="dark"] .modal-footer {

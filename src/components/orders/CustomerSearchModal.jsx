@@ -7,12 +7,17 @@ const CustomerSearchModal = ({
   onSelectCustomer,
   onViewOrders,
   onEditCustomer,
-  matchingCustomers
+  matchingCustomers,
+  onSearch
 }) => {
   const [searchInput, setSearchInput] = useState('');
 
   const handleSearch = (value) => {
     setSearchInput(value);
+    // קורא לפונקציית החיפוש מ-Orders.jsx
+    if (onSearch) {
+      onSearch(value);
+    }
   };
 
   return (
@@ -98,12 +103,29 @@ const CustomerSearchModal = ({
           </div>
         )}
 
-        {matchingCustomers && matchingCustomers.length === 0 && (
+        {matchingCustomers && matchingCustomers.length === 0 && searchInput.length >= 2 && (
           <div className="no-matches">
             <i className="fas fa-user-slash"></i>
-            <p>לא נמצאו לקוחות תואמים</p>
+            <p>לא נמצאו לקוחות תואמים עבור "{searchInput}"</p>
             <button
               className="btn btn-primary"
+              onClick={onCreateNew}
+            >
+              <i className="fas fa-user-plus"></i>
+              צור לקוח חדש
+            </button>
+          </div>
+        )}
+
+        {(!matchingCustomers || matchingCustomers.length === 0) && searchInput.length < 2 && (
+          <div className="no-matches">
+            <i className="fas fa-search"></i>
+            <p>הקלד שם לקוח, מספר טלפון או קוד לקוח כדי לחפש</p>
+            <p style={{fontSize: '14px', color: 'var(--text-secondary)', marginTop: '8px'}}>
+              או לחץ על הכפתור למטה ליצירת לקוח חדש
+            </p>
+            <button
+              className="btn btn-success"
               onClick={onCreateNew}
             >
               <i className="fas fa-user-plus"></i>

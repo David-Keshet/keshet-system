@@ -230,6 +230,8 @@ const Orders = () => {
       id_number: customer.id_number || ''
     });
     setShowCustomerSearchModal(false);
+    // פותח את טופס ההזמנה עם פרטי הלקוח
+    setShowNewOrderModal(true);
   };
 
   // Handler for viewing customer orders
@@ -264,6 +266,8 @@ const Orders = () => {
     setSelectedCustomerId('');
     // Keep current customer data (phone/name) that user was searching for
     setShowCustomerSearchModal(false);
+    // פותח את טופס ההזמנה ללקוח חדש
+    setShowNewOrderModal(true);
   };
 
   const resetOrderForm = () => {
@@ -290,7 +294,8 @@ const Orders = () => {
 
   const openNewOrderModal = () => {
     resetOrderForm();
-    setShowNewOrderModal(true);
+    // פותח ראשית את מודל חיפוש הלקוח
+    setShowCustomerSearchModal(true);
   };
 
   const closeNewOrderModal = () => {
@@ -961,6 +966,7 @@ const Orders = () => {
           onSelectCustomer={handleSelectCustomerFromSearch}
           onViewOrders={handleViewCustomerOrders}
           onEditCustomer={handleEditCustomerFromSearch}
+          onSearch={searchCustomers}
           matchingCustomers={matchingCustomers}
         />
       )}
