@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Customers from './pages/Customers';
 import Orders from './pages/Orders';
-import Tasks from './pages/Tasks';
+import TasksNew from './pages/TasksNew';
 import './App.css';
 
 function App() {
@@ -128,7 +128,7 @@ function App() {
               element={
                 isAuthenticated ?
                   <MainLayout currentUser={user?.user}>
-                    <Tasks />
+                    <TasksNew />
                   </MainLayout> :
                   <Navigate to="/login" replace />
               }
