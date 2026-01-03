@@ -262,11 +262,7 @@ const Orders = () => {
   const handleCreateNewFromSearch = () => {
     setIsNewCustomer(true);
     setSelectedCustomerId('');
-    // Keep the search term in name or phone field
-    if (matchingCustomers.length > 0) {
-      const searchTerm = customerData.phone || customerData.name;
-      // Pre-fill with what user was searching for
-    }
+    // Keep current customer data (phone/name) that user was searching for
     setShowCustomerSearchModal(false);
   };
 
