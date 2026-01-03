@@ -29,8 +29,13 @@ yarn-error.log*
 
 # Backup folders
 BACKUP_*/
+backups/
 
 # Sensitive files - DO NOT COMMIT!
 SUPABASE_KEYS_INFO.txt
 *.key
 *.pem
+
+# Environment files (use .env.example instead)
+.env.development
+.env.production
