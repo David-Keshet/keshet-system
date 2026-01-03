@@ -191,7 +191,7 @@ const Orders = () => {
   const searchCustomers = async (searchTerm) => {
     if (!searchTerm || searchTerm.length < 2) {
       setMatchingCustomers([]);
-      setShowCustomerSearchModal(false);
+      // לא סוגרים את המודל - רק מנקים תוצאות
       return;
     }
 
@@ -204,15 +204,11 @@ const Orders = () => {
 
       if (error) throw error;
 
-      if (data && data.length > 0) {
-        setMatchingCustomers(data);
-        setShowCustomerSearchModal(true);
-      } else {
-        setMatchingCustomers([]);
-        setShowCustomerSearchModal(false);
-      }
+      // מעדכנים את התוצאות בלי לסגור את המודל
+      setMatchingCustomers(data || []);
     } catch (err) {
       console.error('Error searching customers:', err);
+      setMatchingCustomers([]);
     }
   };
 
